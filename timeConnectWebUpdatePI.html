@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>Employee Update Page</h1>
+	<script src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+</head>
+<body>
+
+	<p id="test1"></p>
+	<p id="test2"></p>
+	<p id="test3"></p>
+	<p id="test5"></p>
+	<p id="test6"></p>
+	<p id="test7"></p>
+
+
+	<p>Update your information below and fill all fields please</p>
+	<input type="text" id="firstN" placeholder="First Name"><br>
+	<input type="text" id="lastN" placeholder="Last Name"><br>
+	<input type="text" id="userN" placeholder="Username"><br>
+	<input type="text" id="email" placeholder="Email"><br>
+	<input type="text" id="company" placeholder="Company Name"><br>
+	<input type="text" id="phoneN" placeholder="Phone"><br>
+	<button onclick="updateFunction()">Update</button>
+
+
+	<script>
+	Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+	var currentUser = Parse.User.current();
+	var fn = currentUser.get("firstName");
+	var ln = currentUser.get("lastName");
+	var un = currentUser.get("username");
+	var em = currentUser.get("email");
+	var pn = currentUser.get("company");
+	var cn = currentUser.get("phone");
+
+
+	document.getElementById("test1").innerHTML = "First Name: " + fn;
+	document.getElementById("test2").innerHTML = "Last Name: " + ln;
+	document.getElementById("test3").innerHTML = "Username: " + un;
+	document.getElementById("test5").innerHTML = "Email: " + em;
+	document.getElementById("test6").innerHTML = "Company Name: " + pn;
+	document.getElementById("test7").innerHTML = "Phone: " + cn;
+
+
+	var FN = document.getElementById("firstN").value;
+	var LN = document.getElementById("lastN").value;
+	var UN = document.getElementById("userN").value;
+	var EM = document.getElementById("email").value;
+	var PN = document.getElementById("phoneN").value;
+	var CN = document.getElementById("company").value;
+
+
+	function updateFunction() {
+
+		var user = Parse.User.current();
+
+		user.save({
+			firstName: FN + "",
+			lastName: LN + "",
+			username: UN + "",
+			email: EM + "",
+			company: CN + "",
+			phone: PN + "",
+
+		}, {
+			success: function(user) {
+				//the object was saved successfully
+				alert("Info has been updated");
+			},
+			error: function(user, error) {
+				//the save failed.
+				alert("Info was not updated please try again " + error.code + " " + error.message);
+			}
+		});
+
+	}
+
+	</script>
+	
+</body>
+</html>

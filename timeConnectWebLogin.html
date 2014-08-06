@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	
+	<script src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+	<!--<link rel="stylesheet" type"text/css" href="webLogin.css">-->
+
+</head>
+<body>
+
+	<h1>TimeConnect</h1>
+	<input type="text" id="user" placeholder="Username"><br>
+	<input type="password" id="pass" placeholder="Password"><br>
+	<button onclick="loginFunction()">Login</button><br>
+	<a href="timeConnectWeSignUp.html">Sign Up</a>
+	<a href="timeConnectWebContact.html">Contact Us</a>
+	<a href="timeConnectWebResetPass.html">Reset Password</a><br>
+	
+	<p id="test"></p>
+	
+
+	<script>
+
+	Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+	var UN = document.getElementById("user").value + "";
+
+	//login checks to see if manager or employee
+	function loginFunction() {
+		Parse.User.logIn(UN, document.getElementById("pass").value, {
+			success: function(user) {
+				if (user.get("roles") === "manager") {
+					window.location="timeConnectWebManagerPage.html";
+
+					//add the Parse.User.become method
+
+				} else {
+			  		window.location="timeConnectWebEmployeePage.html";
+				}
+			},
+			error: function(error) { 
+			  	alert("Error: Wrong Username or Password. Please refresh page and try again. " + "Error: " + error.code + " " + error.message);
+			} 
+		});
+	}
+	</script>
+</body>
+</html>

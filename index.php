@@ -40,7 +40,7 @@
 	                    <li><a href="#">Blog</a></li>
 	                  </ul>
 	                </li>
-	                <li class="active"><a href="#login">Log-in</a></li>
+	                <li class="active"><a href="timeConnectWebLogin.html">Log-in</a></li>
 	              </ul>
 	            </div>
 	          </div>

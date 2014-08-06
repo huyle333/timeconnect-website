@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>Employee Time Sheet Update Page</h1>
+	<script src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+</head>
+<body>
+
+	<p id="name"></p>
+	<p>For times that you feel are inaccurate click on the input box and type in the correct time in the form xx:xx pm/am (ex. 12:37 pm/am)</p>
+	
+	<table>
+
+		<tr><td>Day</td><td>Date</td><td>Time In</td><td>Time Out</td><td>Time In</td><td>Time Out</td></tr>
+
+		<tr><td>Monday</td><td>07/06/2014</td><td><input type="text" id="box1"></td><td><input type="text" id="box2"></td><td><input type="text" id="box3"></td><td><input type="text" id="box4"></td></tr>
+
+		<tr><td>Tuesday</td><td>07/07/2014</td><td><input type="text" id="box5"></td><td><input type="text" id="box6"></td><td><input type="text" id="box7"></td><td><input type="text" id="box8"></td></tr>
+
+		<tr><td>Wednesday</td><td>07/08/2014</td><td><input type="text" id="box9"></td><td><input type="text" id="box10"></td><td><input type="text" id="box11"></td><td><input type="text" id="box12"</td></tr>
+
+		<tr><td>Thrudsay</td><td>07/09/2014</td><td><input type="text" id="box13"></td><td><input type="text" id="box14"></td><td><input type="text" id="box15"></td><td><input type="text" id="box16"></td></tr>
+
+		<tr><td>Friday</td><td>07/10/2014</td><td><input type="text" id="box17"></td><td><input type="text" id="box18"></td><td><input type="text" id="box19"></td><td><input type="text" id="box20"></td></tr>
+
+		<tr><td>Saturday</td><td>07/11/2014</td><td><input type="text" id="box21"></td><td><input type="text" id="box22"></td><td><input type="text" id="box23"></td><td><input type="text" id="box24"></td></tr>
+
+		<tr><td>Sunday</td><td>07/12/2014</td><td><input type="text" id="box25"></td><td><input type="text" id="box26"></td><td><input type="text" id="box27"></td><td><input type="text" id="box28"></td></tr>
+
+	</table>
+
+
+	<button onclick="updateFunction()">Update Time Info</button>
+	<button onclick="updateFunction2()">Update Time Info2</button>
+
+
+	<table>
+		<tr><td><p id="1"></p></td><td><p id="2"></p></td><td><p id="3"></p></td><td><p id="4"></p></td></tr>
+
+		<tr><td><p id="5"></p></td><td><p id="6"></p></td><td><p id="7"></p></td><td><p id="8"></p></td></tr>
+
+		<tr><td><p id="9"></p></td><td><p id="10"></p></td><td><p id="11"></p></td><td><p id="12"></p></td></tr>
+
+		<tr><td><p id="13"></p></td><td><p id="14"></p></td><td><p id="15"></p></td><td><p id="16"></p></td></tr>
+
+		<tr><td><p id="17"></p></td><td><p id="18"></p></td><td><p id="19"></p></td><td><p id="20"></p></td></tr>
+
+		<tr><td><p id="21"></p></td><td><p id="22"></p></td><td><p id="23"></p></td><td><p id="24"></p></td></tr>
+
+		<tr><td><p id="25"></p></td><td><p id="26"></p></td><td><p id="27"></p></td><td><p id="28"></p></td></tr>
+
+	</table>
+
+
+	<script>
+	document.getElementById("box1").innerHTML = "hello";
+
+	Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+	var weekDays = ["Monday", "Tuesday", "Wednesday", "Thrudsay", "Friday", "Saturday", "Sunday"];
+
+	var currentUser = Parse.User.current();
+	var UN = currentUser.get("username");
+	var FN = currentUser.get("firstName");
+	var LN = currentUser.get("lastName");
+	document.getElementById("name").innerHTML = "Logged in as: " + FN + " " + LN;
+
+	function updateFunction() {
+
+		
+	}
+
+	</script>
+
+
+</body>
+</html>

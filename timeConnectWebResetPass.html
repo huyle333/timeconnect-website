@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>Reset Password Page</h1>
+	<script src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+</head>
+<body>
+	<input type="text" id="email">Email</br>
+	<button onclick="resetFunction()">Reset</button><br>
+	<p id="succe"></p>
+
+	<script>
+	Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+	function resetFunction() {
+		var email = document.getElementById("email").value;
+		
+		Parse.User.requestPasswordReset(email, {
+			success: function() {
+				//window location method helps to redirect to a new window.
+				window.location="timeConnectWebResetHasBeenSent.html";
+			},
+			error: function(error) {
+				//error msg
+				alert("Error: " + error.code + " " + error.message);
+			}
+		});
+	}
+
+	</script>
+</body>
+</html>

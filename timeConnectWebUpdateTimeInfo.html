@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>Update time info test</h1>
+	<script src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+</head>
+<body>
+
+	<p>View hour history for given week</p>
+	<select id="values">
+		<option value="07-03-2014 - 07-07-2014">07/03/2014 - 07/07/2014</option>
+		<option value="06-26-2014 - 07-02-2014">06/26/2014 - 07/02/2014</option>
+	</select>
+
+	<button onclick="historyFunction()">History/Update Time info test</button>
+	<button onclick="updateTimeInfoFunction()">Update Me Time Info</button>
+	<p id="history1">History Test</p>
+	<p id="history2">History Test</p>
+	<p id="history3">History Test</p>
+
+	<script>
+		Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+		var currentUser = Parse.User.current();
+		var UN = currentUser.get("username");
+		document.getElementById("history1").innerHTML = UN;
+		var timeArray = new Array(14); //stores timeIn/timeOut
+
+		//putting timeArray default values as "abc"
+		for (x = 0; x < timeArray.length; x++) {
+			timeArray[x] = "abc";
+		}
+
+		//this is a place holder for the functions that retrieve drop down menu values
+		for (y = 0; y < timeArray.length; y = y + 2) {
+			timeArray[y] = "8:00 AM"; //timeIn
+			timeArray[y + 1] = "9:00 AM"; //timeOut
+		}
+
+
+		var testing = '';
+		//history function works fine now. 
+		function historyFunction() {
+			var a = document.getElementById("values").value;
+			var b = a.split(" ");
+			var counter = 0;
+
+			var timeSheet = Parse.Object.extend("TimeSheet");
+			var query = new Parse.Query(timeSheet);
+			query.equalTo("username", UN);
+			query.descending("Date");
+			query.find({
+				success: function(results) {
+					for (i = 0; i < results.length; i++) {
+						var object = results[i];
+
+						
+						if (b[2] === object.get('Date')) {
+							counter = 1;
+							for (j = i; j < results.length; j++) { 
+								var object2 = results[j];
+								if (b[0] !== object2.get('Date')) {
+									testing = testing + object2.get('Date') + " " + object2.get('timeIn') + " " + object2.get('timeOut') + "<br>";
+								} else {
+									testing = testing + object2.get('Date') + " " + object2.get('timeIn') + " " + object2.get('timeOut') + "<br>";
+									break;
+								}
+							}
+						}
+
+						if (counter === 1) {
+							break;
+						}
+					}
+
+				},
+				error: function(error) {
+					alert("User does not exist");
+				}
+			});
+
+			document.getElementById("history2").innerHTML = testing;
+			testing = '';
+		}
+
+
+
+		var testing22 = '';
+		//parse data is stored in results array and update time is stored in timeArray array. 
+		//only the first seven times need to be updated. An employee won't be allowed to update times from previous weeks. 
+		function updateTimeInfoFunction() {
+			var timeSheet = Parse.Object.extend("TimeSheet");
+			var query = new Parse.Query(timeSheet);
+			query.equalTo("username", UN);
+			query.descending("Date");
+			query.find({
+				success: function(results) {
+					for (z = 0; z < (timeArray.length)/2; z++) {
+						var object2 = results[z];
+						object2.set('timeIn', timeArray[z*2]);
+						object2.set('timeOut', timeArray[z*2 + 1]);
+						object2.save();
+						
+					}
+					document.getElementById("history3").innerHTML = "Done";
+				},
+				error: function(error) {
+					alert("User does not exist");
+				}
+			});
+		}
+
+
+
+
+	</script>
+
+</body>
+</html>

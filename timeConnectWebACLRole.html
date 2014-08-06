@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>After Login Page</h1>
+</head>
+<body>
+
+
+	<script>
+		Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+		var roleACL = new Parse.ACL();
+		roleACL.setPublicReadAccess(true);
+		roleACL.setPublicWriteAccess(true);
+		var role = new Parse.Role("Administrator", roleACL);
+		role.save();
+
+		
+
+	</script>
+
+</body>
+</html>

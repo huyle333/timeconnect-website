@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>Random Tests Page</h1>
+	<script src="https://parse.com/downloads/javascript/parse-1.2.19.js"></script>
+</head>
+<body>
+
+
+<p id="test">x</p>
+<p id="test2">y</p>
+<p id="test3">z</p>
+<button onclick="clFunction()">Test this Function</button>
+<div id="tests2"></div>
+<!-- find out how the onload method works-->
+
+<input type="text" id="box11"><br>
+<input type="text" id="box21"><br>
+
+<table>
+	<tr><td>Time In</td><td>Time Out</td></tr>
+	<tr><td><select id="box1">
+	<option value="abc"></option>
+	<option value="6:00 AM">6:00 AM</option>
+	<option value="6:15 AM">6:15 AM</option>
+	<option value="6:30 AM">6:30 AM</option>
+	<option value="6:45 AM">6:45 AM</option>
+	<option value="7:00 AM">7:00 AM</option>
+	<option value="7:15 AM">7:15 AM</option>
+	<option value="7:30 AM">7:30 AM</option>
+	<option value="7:45 AM">7:45 AM</option>
+	<option value="8:00 AM">8:00 AM</option>
+	<option value="8:15 AM">8:15 AM</option>
+	<option value="8:30 AM">8:30 AM</option>
+	<option value="8:45 AM">8:45 AM</option>
+	<option value="9:00 AM">9:00 AM</option>
+	<option value="9:15 AM">9:15 AM</option>
+	<option value="9:30 AM">9:30 AM</option>
+	<option value="9:45 AM">9:45 AM</option>
+	<option value="10:00 AM">10:00 AM</option>
+	<option value="10:15 AM">10:15 AM</option>
+	<option value="10:30 AM">10:30 AM</option>
+	<option value="10:45 AM">10:45 AM</option>
+	<option value="11:00 AM">11:00 AM</option>
+	<option value="11:15 AM">11:15 AM</option>
+	<option value="11:30 AM">11:30 AM</option>
+	<option value="11:45 AM">11:45 AM</option>
+	<option value="12:00 PM">12:00 PM</option>
+	<option value="12:15 PM">12:15 PM</option>
+	<option value="12:30 PM">12:30 PM</option>
+	<option value="12:45 PM">12:45 PM</option>
+	<option value="1:00 PM">1:00 PM</option>
+	<option value="1:15 PM">1:15 PM</option>
+	<option value="1:30 PM">1:30 PM</option>
+	<option value="1:45 PM">1:45 PM</option>
+	<option value="2:00 PM">2:00 PM</option>
+	<option value="2:15 PM">2:15 PM</option>
+	<option value="2:30 PM">2:30 PM</option>
+	<option value="2:45 PM">2:45 PM</option>
+	<option value="3:00 PM">3:00 PM</option>
+	<option value="3:15 PM">3:15 PM</option>
+	<option value="3:30 PM">3:30 PM</option>
+	<option value="3:45 PM">3:45 PM</option>
+	<option value="4:00 PM">4:00 PM</option>
+	<option value="4:15 PM">4:15 PM</option>
+	<option value="4:30 PM">4:30 PM</option>
+	<option value="4:45 PM">4:45 PM</option>
+	<option value="5:00 PM">5:00 PM</option>
+	<option value="5:15 PM">5:15 PM</option>
+	<option value="5:30 PM">5:30 PM</option>
+	<option value="5:45 PM">5:45 PM</option>
+	<option value="6:00 PM">6:00 PM</option>
+	<option value="6:15 PM">6:15 PM</option>
+	<option value="6:30 PM">6:30 PM</option>
+	<option value="6:45 PM">6:45 PM</option>
+	<option value="7:00 PM">7:00 PM</option>
+	<option value="7:15 PM">7:15 PM</option>
+	<option value="7:30 PM">7:30 PM</option>
+	<option value="7:45 PM">7:45 PM</option>
+	<option value="8:00 PM">8:00 PM</option>
+	<option value="8:15 PM">8:15 PM</option>
+	<option value="8:30 PM">8:30 PM</option>
+	<option value="8:45 PM">8:45 PM</option>
+	<option value="9:00 PM">9:00 PM</option>
+	<option value="9:15 PM">9:15 PM</option>
+	<option value="9:30 PM">9:30 PM</option>
+	<option value="9:45 PM">9:45 PM</option>
+	<option value="10:00 PM">10:00 PM</option>
+	<option value="10:15 PM">10:15 PM</option>
+	<option value="10:30 PM">10:30 PM</option>
+	<option value="10:45 PM">10:45 PM</option>
+	<option value="11:00 PM">11:00 PM</option>
+	<option value="11:15 PM">11:15 PM</option>
+	<option value="11:30 PM">11:30 PM</option>
+	<option value="11:45 PM">11:45 PM</option>
+</select></td>
+
+</table>
+
+
+<button onclick="dropFunction()">Test Drop Down</button>
+<p>Time In/Time Out</p>
+<p id="testing1"></p>
+<p id="testing2"></p>
+<p id="testing3"></p>
+<p id="testing4"></p>
+
+
+<button onclick="convertToMilitary()">Test military Time</button>
+<p id="military1"></p>
+<p id="military2"></p>
+<p id="military3"></p>
+<p id="military4"></p>
+<p id="military5"></p>
+<p id="military6"></p>
+
+<p>View hour history for given week</p>
+<select id="history">
+	<option value="07/03/2014 - 07/07/2014">07/03/2014 - 07/07/2014</option>
+	<option value="06/26/2014 - 07/02/2014">06/26/2014 - 07/02/2014</option>
+</select>
+<button onclick="historyFunction()">Test History Function</button>
+<div id="history1"></div>
+<div id="history3"></div>
+<div id="history2"></div>
+<button onclick="updateTimeInfoFunction()">Update Time Info Test</button>
+<p id="update1"></p>
+<p id="update2"></p>
+
+
+
+	<script>
+
+	Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+	var currentUser = Parse.User.current();
+	var UN = currentUser.get("username");
+	var FN = currentUser.get("firstName");
+	var LN = currentUser.get("lastName");
+
+	var points2 = new Array(28);
+	var militaryA1 = new Array(28);
+	var militaryA2 = new Array(28);
+
+	/*
+	function clFunction() {
+		var x = 'box' + 1;
+		document.getElementById("test2").innerHTML = x;
+		var y = document.getElementById(x).value;
+		document.getElementById("test").innerHTML = y;
+
+	}
+	
+
+	function dropFunction() {
+
+		for (j = 0; j < points2.length; j++) {
+			points2[j] = 99999;
+			militaryA1[j] = 99999;
+		}
+		
+		//change the 4 since only one input field now
+		for (i = 0; i < 4; i++) {
+			var a = "box" + (i + 1);
+			var b = "testing" + (i + 1);
+			points2[i] = document.getElementById(a).value;
+			document.getElementById(b).innerHTML = document.getElementById(a).value;
+		}
+
+	}
+
+	function convertToMilitary() {
+		for (i = 0; i < points2.length; i++) {
+			if (points2[i] === 99999) {
+				//do nothing
+			} else {
+				var a = points2[i];
+				var b = a.split(" "); //b[0] is time b[1] AM/PM
+				var c = b[0].split(":"); //c[0] is hour c[1] is minute
+				
+				//12:00 AM is 0000 and 12 PM is 2400
+				if (b[1] === "AM") {
+					militaryA1[i] = (100 * Number(c[0])) + Number(c[1]);
+				} else if (b[1] === "PM") {
+					militaryA1[i] = (100 * Number(c[0])) + Number(c[1]) + 1200;
+				} else {
+					militaryA1[i] = 99999;
+				}
+			}
+		}
+
+		var a = '';
+		var totalHrs = 0;
+		for (j = 0; j < militaryA1.length; j++) {
+			if (militaryA1[j] === 99999) {
+				//do nothing
+			} else {
+				 a =  a + ' ' + militaryA1[j];
+				 totaHrs = totalHrs
+			}
+		}
+
+		document.getElementById("military6").innerHTML = a;
+		document.getElementById("military5").innerHTML = totalHrs;
+
+	}
+
+
+
+	function historyFunction() {
+
+		document.getElementById("history3").innerHTML = "Currently logged in as: " + FN + " " + LN + " " + UN;
+
+		//parses the week info
+		var a = document.getElementById("history").value;
+		var b = a.split(" ");
+		var c = b[0].split("/"); //first date
+		var d = b[2].split("/"); //second date
+		document.getElementById("history1").innerHTML = c + ' ' + d;
+
+
+		//extracts hours for given week
+		var stringTest = '';
+		var timeSheet = Parse.Object.extend("TimeSheet");
+		var query = new Parse.Query(timeSheet);
+		
+		query.equalTo("username", UN);
+		query.descending("Date");
+		//query.limit(7); //7 days of the week most recent entries
+		stringTest = stringTest + "hello1";
+		query.find({
+			success: function(results) {
+				stringTest = stringTest + "hello3";
+				stringTest = stringTest + results[0].get('Date');
+				stringTest = stringTest + "hello4";
+				
+			},
+			error: function(error) {
+				alert("Error: User Does not exist");
+			}
+		});
+		stringTest = stringTest + "hello6";
+		document.getElementById("history2").innerHTML = stringTest;
+	}
+	*/
+	function updateTimeInfoFunction() {
+		//need to do a query to get the objects in the results array. Then iterate through the results array to get the object id and then do another loop where the object (individual rows) will be retrieved using the object id. Then just update the row ('timeIn') or ('timeInUpdate') etc using the update or save method. 
+		var resultsArray;
+
+		var timeSheet = Parse.Object.extend("TimeSheet");
+		var query = new Parse.Query(timeSheet);
+		
+		query.equalTo("username", UN);
+		query.find({
+			success: function(results) {
+				resultsArray = new Array(results.length);
+			},
+			error: function (error) {
+				// body...
+			}
+		});
+
+		document.getElementById("update2").innerHTML = resultsArray.length;
+	}
+
+	</script>
+
+</body>
+</html>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>Manager Page</h1>
+	<script src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+	<script src="http://code.jquery.com/jquery-1.11.1.js"></script>
+
+	<!-- for drop down menu-->
+	<script src="js/vendor/jquery.js"></script> 
+	<script src="js/foundation/foundation.js"></script> 
+	<script src="js/foundation/foundation.dropdown.js"></script>
+</head>
+<body>
+	<p id="manager1"></p>
+	<p id="manager2"></p>
+	<p id="test"></p>
+	<!--
+	<input type="text" id="Esearch" placeholder="Username"><br>
+-->
+	<input type="text" id="employeeName" placeholder="Employee Name"><br>
+	<button onclick="searchFunction()">Search</button>
+	<button onclick="logoutFunction()">Log Out</button>
+	<button>Approve Hours</button><br>
+	<p id="test2"></p>
+
+	<p>Select work week</p>
+	<select id="values123">
+		<option value="07-03-2014 - 07-07-2014">07/03/2014 - 07/07/2014</option>
+		<option value="06-26-2014 - 07-02-2014">06/26/2014 - 07/02/2014</option>
+	</select>
+	<button onclick="managerHistoryFunction()">History</button><br>
+
+	
+	<!--
+	<p>For right now once you logout and go back just refresh the page and you will see the you are logged into change.</p>
+	<p>Also need to connect approve button to a payroll program</p>
+	<p>I'll change it in a bit to use the full name of the employee instead of the username</p>
+-->
+
+	<p id="test3"></p>
+
+
+	<script>
+
+	var stringTest = '';
+	stringTest = stringTest + '<table>';
+	//search function now checks to see if employee company matches the managers company. 
+	//figure out how you will add roles to the database (probs manually or maybe a CSV file?)
+
+	//need to make it so caps does not matter!!!!!!!!!!!!!!!!!!!!!!! 
+	Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+	var currentUser = Parse.User.current();
+	var EN = currentUser.get("employeeName");
+	var R = currentUser.get("roles");
+	var C = currentUser.get("company");
+	document.getElementById("test").innerHTML = "You are logged in as: " + EN;
+
+	//var EFN = document.getElementById("firstName").value;
+	//var ELN = document.getElementById("lastName").value;
+	var EEN = document.getElementById("employeeName").value;
+
+	
+	function searchFunction() {
+		//look at compound queries
+		var totalHrs = 0;
+		var timeSheet = Parse.Object.extend("TimeSheet");
+		var query = new Parse.Query(timeSheet);
+
+		query.equalTo("EmployeeName", document.getElementById("employeeName").value);
+		query.descending("Date");
+		query.find({
+			success: function(results) {
+				//do something with the returned Parse.Object values
+				//var object1 = results[0];
+					if (C === results[0].get("company")) {
+						stringTest = stringTest + ('<table border="1" cellspacing="1" cellpadding="5">');
+						stringTest = stringTest + ('<tr><td>' + 'Employee Name: ' + '</td><td>' + results[0].get('FirstName') + '</td><td>' + results[0].get('LastName') + '</td><tr>');
+						stringTest = stringTest + ('<tr><td>Date</td><td>Time In</td><td>Time Out</td><tr>');
+
+						for (var i = 0; i < 7; i++) {
+							var object = results[i];
+							totalHrs = totalHrs + (object.get('timeOutMilitary') - object.get('timeInMilitary'));
+							stringTest = stringTest + ('<tr><td>' + object.get('Date') + '</td><td>' + object.get('timeIn') + '</td><td>' + object.get('timeOut') + '</td></tr>'); 
+						}
+						stringTest = stringTest + ('<tr><td>' + "Total Hours:" + '</td><td>' + totalHrs/60.0 + '</td><td></td></tr>');
+						stringTest = stringTest + '</table>';
+					} else {
+						alert("Error: Employee does not exist");
+					}
+				
+				},
+				error: function(error) {
+					alert("Error: Employee does not exist");
+				}
+			});
+			document.getElementById("test2").innerHTML = stringTest;
+			stringTest = '';
+	}
+
+
+	function logoutFunction() {
+		Parse.User.logOut();
+
+		window.location="timeConnectWebLogin.html";
+	}
+	
+
+	var testing	= '';
+	function managerHistoryFunction() {
+		var a = document.getElementById("values123").value;
+		var b = a.split(" ");
+		var counter = 0;
+		var totalHrs2 = 0;
+		var timeSheet = Parse.Object.extend("TimeSheet");
+		var query = new Parse.Query(timeSheet);
+		query.equalTo("EmployeeName", document.getElementById("employeeName").value);
+		query.descending("Date");
+		query.find({
+			success: function(results) {
+				testing = testing + ('<table border="1" cellspacing="1" cellpadding="5">');
+				testing = testing + ('<tr><td>Date</td><td>Time In</td><td>Time Out</td><tr>');
+				for (i = 0; i < results.length; i++) {
+					var object = results[i];
+						
+					if (b[2] === object.get('Date')) {
+						counter = 1;
+						for (j = i; j < results.length; j++) { 
+							var object2 = results[j];
+							if (b[0] !== object2.get('Date')) {
+								totalHrs2 = totalHrs2 + (object2.get('timeOutMilitary') - object2.get('timeInMilitary'));
+								testing = testing + ('<tr><td>' + object2.get('Date') + '</td><td>' + object2.get('timeIn') + '</td><td>' + object2.get('timeOut') + '</td></tr>'); 
+							} else {
+								totalHrs2 = totalHrs2 + (object2.get('timeOutMilitary') - object2.get('timeInMilitary'));
+								testing = testing + ('<tr><td>' + object2.get('Date') + '</td><td>' + object2.get('timeIn') + '</td><td>' + object2.get('timeOut') + '</td></tr>'); 
+								break;
+							}
+						}
+					}
+
+					if (counter === 1) {
+						break;
+					}
+				}
+
+				testing = testing + ('<tr><td>' + "Total Hours:" + '</td><td>' + totalHrs2/60.0 + '</td><td></td></tr>');
+				testing = testing + '</table>';
+
+			},
+			error: function(error) {
+				alert("User does not exist");
+			}
+		});
+
+		document.getElementById("test3").innerHTML = testing;
+		testing = '';
+	}
+	</script>
+</body>
+</html>

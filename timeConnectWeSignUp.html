@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<h1>SignUpPage</h1>
+	<script src="http://www.parsecdn.com/js/parse-1.2.18.min.js"></script>
+</head>
+<body>
+	
+		<input type="text" id="firstN" placeholder="First Name"><br>
+		<input type="text" id="lastN" placeholder="Last Name"><br>
+		<input type="text" id="userN" placeholder="Username"><br>
+		<input type="passowrd" id="pass" placeholder="Password"><br>
+		<input type="text" id="email" placeholder="Email"><br>
+		<input type="text" id="company" placeholder="Company Name"><br>
+		<input type="text" id="phoneN" placeholder="Phone Number (###-###-####"><br>
+		<button onclick="signUpFunction()">Sign Up</button>
+	
+
+	<script>
+	Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
+
+	var FN = document.getElementById("firstN").value;
+	var LN = document.getElementById("lastN").value;
+	var UN = document.getElementById("userN").value;
+	var PW = document.getElementById("pass").value;
+	var EM = document.getElementById("email").value;
+	var PN = document.getElementById("phoneN").value;
+	var CN = document.getElementById("company").value;
+
+	
+	function signUpFunction() {
+
+		var user = new Parse.User();
+		user.set("firstName", FN);
+		user.set("lastName", LN);
+		user.set("username", UN);
+		user.set("employeeName", FN + " " + LN);
+		user.set("password", PW);
+		user.set("email", EM);
+		user.set("phone", PN + "");
+		user.set("company", CN);
+
+		user.signUp(null, {
+			success: function(user) {
+				//hooray! let them use the app now. just redirect to login page.
+				window.location="timeConnectWebLogin.html";
+
+			},
+			error: function(user, error) {
+				//show error message
+				alert("Error: " + error.code + " " + error.message);
+			}
+		});
+
+	}
+	</script>
+</body>
+</html>

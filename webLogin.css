@@ -1,0 +1,14 @@
+body {
+	background-color: rgb(35, 136, 219);
+}
+
+h1 {
+	color: white;
+	text-align: center;
+	vertical-align: center;
+}
+
+#logincenter {
+	margin-right: auto;
+	margin-left: auto;
+}
