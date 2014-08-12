@@ -32,13 +32,14 @@
 	            </div>
 	            <div class="navbar-collapse collapse">
 	              <ul class="nav navbar-nav navbar-right">
-	                <li><a href="#">Small Businesses</a></li>
-	                <li><a href="#about">Accountants and Bookkeepers</a></li>
+	                <li><a href="#">Products</a></li>
+	                <li><a href="#">Pricing</a></li>
+	                <li><a href="#about">About us</a></li>
 	                <li class="dropdown">
 	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <span class="caret"></span></a>
 	                  <ul class="dropdown-menu" role="menu">
 	                    <li><a href="#">Features</a></li>
-	                    <li><a href="#">Pricing</a></li>
+	                    <li><a href="#">Communities</a></li>
 	                    <li><a href="#">Add-ons</a></li>
 	                    <li class="divider"></li>
 	                    <li><a href="#">Support</a></li>
@@ -57,29 +58,29 @@
       		<div class="container text-center">
       			<div class = "row">
       				<div class="col-md-6">
-		      			<h2 style = "color: #44aefc">Login</h2>
+		      			<h2 style = "color: #1871D6">Login</h2>
 		      			<br>
 		      			<form name = "loginForm" action="javascript:loginFunction()">
-			      			<span class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
+			      			<span style = "border: 0.5px solid gray;" class="input-group-addon"><i class="fa fa-envelope fa-fw"></i></span>
 			      			<input class="form-control" type="text" id="user" placeholder="Username"><br>
-							<span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+							<span style = "border: 0.5px solid gray;" class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
 							<input class="form-control" type="password" id="pass" placeholder="Password"><br>
 							<br>
-							<button class = "btn btn-success" type = "submit">Login</button><br> 
+							<button style = "margin-left: 100px; float: left" class = "btn btn-primary" type = "submit">Login</button> <a href= "reset.php" class = "btn btn-default">Reset your password?</a>
       					</form><br>
-      					<a href= "reset.php" class = "btn btn-danger">Reset your password?</a>
+      					
       				</div>
       				<div class="col-md-6">
-		      			<h2 style = "color: #44aefc">First time user? - Sign up</h2>
+		      			<h2 style = "color: #1871D6">First time user? - Sign up</h2>
 		      			<br>
-		      			<input type="text" id="firstN" placeholder="First Name"><br>
-						<input type="text" id="lastN" placeholder="Last Name"><br>
-						<input type="text" id="userN" placeholder="Username"><br>
-						<input type="password" id="signUpPass" placeholder="Password"><br>
-						<input type="text" id="email" placeholder="Email"><br>
-						<input type="text" id="company" placeholder="Company Name"><br>
-						<input type="text" id="phoneN" placeholder="Phone Number (###-###-####)"><br><br>
-      					<button class = "btn btn-success" onclick="signUpFunction()">Sign Up</button>
+		      			<input class="form-control" type="text" id="firstN" placeholder="First Name"><br>
+						<input class="form-control" type="text" id="lastN" placeholder="Last Name"><br>
+						<input class="form-control" type="text" id="userN" placeholder="Username"><br>
+						<input class="form-control" type="password" id="signUpPass" placeholder="Password"><br>
+						<input class="form-control" type="text" id="email" placeholder="Email"><br>
+						<input class="form-control" type="text" id="company" placeholder="Company Name"><br>
+						<input class="form-control" type="text" id="phoneN" placeholder="Phone Number (###-###-####)"><br><br>
+      					<button class = "btn btn-primary" onclick="signUpFunction()">Sign Up</button>
       				</div>
       			</div>
       		</div>

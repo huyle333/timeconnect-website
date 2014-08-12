@@ -28,13 +28,14 @@
 	            </div>
 	            <div class="navbar-collapse collapse">
 	              <ul class="nav navbar-nav navbar-right">
-	                <li><a href="#">Small Businesses</a></li>
-	                <li><a href="#about">Accountants and Bookkeepers</a></li>
+	                <li><a href="#">Products</a></li>
+	                <li><a href="#">Pricing</a></li>
+	                <li><a href="#about">About us</a></li>
 	                <li class="dropdown">
 	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <span class="caret"></span></a>
 	                  <ul class="dropdown-menu" role="menu">
 	                    <li><a href="#">Features</a></li>
-	                    <li><a href="#">Pricing</a></li>
+	                    <li><a href="#">Communities</a></li>
 	                    <li><a href="#">Add-ons</a></li>
 	                    <li class="divider"></li>
 	                    <li><a href="#">Support</a></li>
