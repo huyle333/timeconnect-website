@@ -73,14 +73,16 @@
       				<div class="col-md-6">
 		      			<h2 style = "color: #1871D6">First time user? - Sign up</h2>
 		      			<br>
-		      			<input class="form-control" type="text" id="firstN" placeholder="First Name"><br>
-						<input class="form-control" type="text" id="lastN" placeholder="Last Name"><br>
-						<input class="form-control" type="text" id="userN" placeholder="Username"><br>
-						<input class="form-control" type="password" id="signUpPass" placeholder="Password"><br>
-						<input class="form-control" type="text" id="email" placeholder="Email"><br>
-						<input class="form-control" type="text" id="company" placeholder="Company Name"><br>
-						<input class="form-control" type="text" id="phoneN" placeholder="Phone Number (###-###-####)"><br><br>
-      					<button class = "btn btn-primary" onclick="signUpFunction()">Sign Up</button>
+		      			<form name = "signUpForm" action="javascript:signUpFunction()">
+			      			<input class="form-control" type="text" id="firstN" placeholder="First Name"><br>
+							<input class="form-control" type="text" id="lastN" placeholder="Last Name"><br>
+							<input class="form-control" type="text" id="userN" placeholder="Username"><br>
+							<input class="form-control" type="password" id="signUpPass" placeholder="Password"><br>
+							<input class="form-control" type="text" id="email" placeholder="Email"><br>
+							<input class="form-control" type="text" id="company" placeholder="Company Name"><br>
+							<input class="form-control" type="text" id="phoneN" placeholder="Phone Number (###-###-####)"><br><br>
+	      					<button class = "btn btn-primary" type = "submit">Sign Up</button>
+      					</form>
       				</div>
       			</div>
       		</div>
@@ -137,13 +139,13 @@
 		</script>
 
 		<script>
-		var FN = document.getElementById("firstN").value;
-		var LN = document.getElementById("lastN").value;
-		var UN = document.getElementById("userN").value;
-		var PW = document.getElementById("signUpPass").value;
-		var EM = document.getElementById("email").value;
-		var PN = document.getElementById("phoneN").value;
-		var CN = document.getElementById("company").value;
+		var FN = document.signUpForm.firstN.value;
+		var LN = document.signUpForm.lastN.value;
+		var UN = document.signUpForm.userN.value;
+		var PW = document.signUpForm.signUpPass.value;
+		var EM = document.signUpForm.email.value;
+		var PN = document.signUpForm.phoneN.value;
+		var CN = document.signUpForm.company.value;
 
 		
 		function signUpFunction() {

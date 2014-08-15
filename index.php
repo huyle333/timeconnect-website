@@ -79,7 +79,7 @@
       		<div class="container text-center">
       			<img src = "img/computer.png" width = "350px" style = "margin-top: 110px">
       			<img src = "img/mobileapp.png" width = "200px" style = "margin-left: -20px; margin-right: -10px">
-      			<img src = "img/scanner.png" width = "250px" style = "margin-top: 70px; margin-right: 50px;">
+      			<img src = "img/scanner2.png" width = "280px" style = "margin-top: 80px; margin-right: 50px;">
       		</div>
     	</div>
 

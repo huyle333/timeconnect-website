@@ -8,6 +8,7 @@
 		<link rel= "shortcut icon" href="img/favicon.ico">
 		<link href= "http://fonts.googleapis.com/css?family=Ubuntu|Open+Sans:400,600" rel="stylesheet" />
 		<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+		<link href="css/counter.css" rel="stylesheet">
 		<script src="//www.parsecdn.com/js/parse-1.2.19.min.js"></script>
 		<script>
 			Parse.initialize("VHJSk9hmfDIoXsrRE3V7KWM6KHkncJwYfslUp10A", "qQzcr3LyCEAFf3yzxUmZh1LKy7EBmfxXw8vV6SMB");
@@ -32,9 +33,9 @@
 	            </div>
 	            <div class="navbar-collapse collapse">
 	              <ul class="nav navbar-nav navbar-right">
-	                <li><a href="#">Products</a></li>
-	                <li><a href="#">Pricing</a></li>
-	                <li><a href="#about">About us</a></li>
+	                <li><a href="#">Home</a></li>
+	                <li><a href="#">Message</a></li>
+	                <li><a href="#about">Settings</a></li>
 	                <li class="dropdown">
 	                  <a href="#" class="dropdown-toggle" data-toggle="dropdown">More <span class="caret"></span></a>
 	                  <ul class="dropdown-menu" role="menu">
@@ -54,11 +55,157 @@
 	      </div>
 	    </div>
 
-	    <div class="jumbotron" style="background-color: white; margin-top: 30px">
+	    <div class="jumbotron" style="background-color: white; margin-top: 30px">	
       		<div class="container text-center">
-      			
+
+      			<div id = "hours"></div>
+      			<br>
+      			<button class = "btn btn-primary" onclick= "showWeek()">Show Hours</button>
+      			<br></br>
+      			<div class = "jumbotron" id="showWeek"></div>
+
+      			<div class="counter">
+					<span class="digit-0">0</span>
+					<span class="digit-0">0</span>
+					<span class="digit-1">1</span>
+					<span class="digit-5">5</span>
+					<br/><h5 style = "color:white">Hours saved this pay period</h5>
+				</div>
+   				<div class="counter">
+					<span class="digit-0">0</span>
+					<span class="digit-0">0</span>
+					<span class="digit-0">0</span>
+					<span class="digit-5">5</span>
+					<br/><h5 style = "color:white">Co-workers using TimeConnect</h5>
+				</div>
+   				<div class="counter">
+					<span class="digit-2">2</span>
+					<span class="digit-5">5</span>
+					<span class="digit-8">8</span>
+					<span class="digit-1">1</span>
+					<br/><h5 style = "color:white">Money saved</h5>
+				</div>
+				
       		</div>
       	</div>
+
+      	<div class="jumbotron" style="background-color: white; margin-top: -80px">	
+      		<div class="container text-center">
+				<p>Select Work Week</p>
+				<select id="values123">
+					<option value="07-03-2014 - 07-07-2014">07/03/2014 - 07/07/2014</option>
+					<option value="06-26-2014 - 07-02-2014">06/26/2014 - 07/02/2014</option>
+				</select>
+				<button class = "btn btn-info" onclick="historyFunction()">Show History</button>
+				<div id="history2"></div>
+      		</div>
+      	</div>
+
+      	<script>
+	    	var currentUser = Parse.User.current();
+	    	var UN = currentUser.get("username");
+	    	var FN = currentUser.get("firstName");
+	    	var LN = currentUser.get("lastName");
+	    	var EN = currentUser.get("employeeName");
+	    	document.getElementById("hours").innerHTML = "<h3>Currently logged in as: </h3><h3>" + EN + "</h3>";
+	    </script>
+
+	    <script>
+	    	var points2 = new Array(28); //store normal time as a string with AM/PM
+			var militaryA1 = new Array(28); //store time as a whole number
+			var stringTest = '';
+			stringTest = stringTest + '<table>';
+
+	    	function showWeek() {
+				//set a counter variable and an if statment so if counter is more than 2 then clicking button wont display more history. 
+				var totalHrs = 0;
+				var timeSheet = Parse.Object.extend("TimeSheet");
+				var query = new Parse.Query(timeSheet);
+			
+				query.equalTo("EmployeeName", EN);
+				query.descending("Date");
+				//query.limit(7); //7 days of the week most recent entries
+				query.find({
+					success: function(results) {
+						//do something with the returned Parse.Object values
+						//var object1 = results[0];
+
+						stringTest = stringTest + ('<row><div class="col-md-4">Date</div><div class="col-md-4">Time In</div><div class="col-md-4">Time Out</div><row>');
+
+						for (var i = 0; i < 7; i++) {
+							var object = results[i];
+							totalHrs = totalHrs + (object.get('timeOutMilitary') - object.get('timeInMilitary'));
+							stringTest = stringTest + ('<row><div class="col-md-4">' + object.get('Date') + '</div><div class="col-md-4">' + object.get('timeIn') + '</div><div class="col-md-4">' + object.get('timeOut') + '</div><row>'); 
+						}
+						stringTest = stringTest + ('<br><h3 style="margin-bottom: -25px">Total Hours: ' + totalHrs/60.0 + '</h3>');
+					
+					},
+					error: function(error) {
+						alert("Error: User Does not exist");
+					}
+				});
+
+				document.getElementById("showWeek").innerHTML = stringTest + "<br>";
+				stringTest = '';
+			}
+			showWeek();
+	    </script>
+
+	    <script>
+	    	var testing = '';
+		//hi
+		//history function works fine now.
+		//need to make it into a table. 
+	function historyFunction() {
+		var a = document.getElementById("values123").value;
+		var b = a.split(" ");
+		var counter = 0;
+		var totalHrs2 = 0;
+		var timeSheet = Parse.Object.extend("TimeSheet");
+		var query = new Parse.Query(timeSheet);
+		query.equalTo("EmployeeName", EN);
+		query.descending("Date");
+		query.find({
+			success: function(results) {
+				testing = testing + ('<table border="1" cellspacing="1" cellpadding="5">');
+				testing = testing + ('<tr><td>Date</td><td>Time In</td><td>Time Out</td><tr>');
+				for (i = 0; i < results.length; i++) {
+					var object = results[i];
+						
+					if (b[2] === object.get('Date')) {
+						counter = 1;
+						for (j = i; j < results.length; j++) { 
+							var object2 = results[j];
+							if (b[0] !== object2.get('Date')) {
+								totalHrs2 = totalHrs2 + (object2.get('timeOutMilitary') - object2.get('timeInMilitary'));
+								testing = testing + ('<tr><td>' + object2.get('Date') + '</td><td>' + object2.get('timeIn') + '</td><td>' + object2.get('timeOut') + '</td></tr>'); 
+							} else {
+								totalHrs2 = totalHrs2 + (object2.get('timeOutMilitary') - object2.get('timeInMilitary'));
+								testing = testing + ('<tr><td>' + object2.get('Date') + '</td><td>' + object2.get('timeIn') + '</td><td>' + object2.get('timeOut') + '</td></tr>'); 
+								break;
+							}
+						}
+					}
+
+					if (counter === 1) {
+						break;
+					}
+				}
+
+				testing = testing + ('<tr><td>' + "Total Hours:" + '</td><td>' + totalHrs2/60.0 + '</td><td></td></tr>');
+				testing = testing + '</table>';
+
+			},
+			error: function(error) {
+				alert("User does not exist");
+			}
+		});
+
+		document.getElementById("history2").innerHTML = testing;
+		testing = '';
+		}
+
+	    </script>
 
 		<div id = "end" class = "navbar navbar-default" style="height: 250px">
             <div class = "container">
